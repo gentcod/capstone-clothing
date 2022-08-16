@@ -1,0 +1,21 @@
+.navigation {
+
+   &-container {
+      padding: 3rem 2rem;
+      display: flex;
+      justify-content: space-between;
+   }
+
+   &__links {
+      display: flex;
+      justify-content: space-evenly;
+   
+   }
+
+   &__link {
+      font-size: 1.2rem;
+      font-weight: 300;
+      text-transform: uppercase;
+      padding: 1rem;
+   }
+}
