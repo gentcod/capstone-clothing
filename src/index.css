@@ -13,3 +13,8 @@ a {
   text-decoration: none;
   color: #1f2f25;
 }
+
+input {
+  outline: none;
+  border: none;
+}

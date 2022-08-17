@@ -1,0 +1,57 @@
+.btn-regular {
+   height: 3rem;
+   border: none;
+   outline: none;
+   display: inline-block;
+   background-color: #222;
+   text-transform: uppercase;
+   color: #fff;
+   padding: .5rem 2.5rem;
+   border-radius: 3px;
+   margin: 0 auto;
+   margin-top: 1rem;
+   backface-visibility: hidden;
+   cursor: pointer;
+   transition: all .5s;
+
+   &:hover {
+      transform: scale(1.1);
+      background-color: #fff;
+      color: #222;
+      font-weight: 700;
+      border: 1px solid #222;
+   }
+
+   &:active {
+      transform: scale(1) translateY(1rem);
+   }
+
+   &--google {
+      background-color: #4285f4;
+
+      &:hover {
+         background-color: #aac9fa;
+         color: #1f251f;
+         border: 1px solid #4285f4;
+      }
+   }
+
+   &--inverted {
+      background-color: #fff;
+      color: #222;
+      font-weight: 700;
+      border: 1px solid #222;
+
+      &:hover {
+         background-color: #222;
+         color: #fff;
+         font-weight: 500;
+         border: none;
+      }
+   } 
+}
+
+.btn-container {
+   display: grid;
+   grid-template-columns: auto auto;
+}
