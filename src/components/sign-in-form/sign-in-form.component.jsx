@@ -20,7 +20,8 @@ const SignInForm = () => {
    //Sign in with google popup
    const signInWithgGoogle = async () => {
       const {user} = await signInWithGooglePopUp();
-      const userDcoRef = await createUserDocumentFromAuth(user);
+      await createUserDocumentFromAuth(user);
+   
    };
 
    //Sign in with email

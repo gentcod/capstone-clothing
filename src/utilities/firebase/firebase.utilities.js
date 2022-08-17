@@ -13,6 +13,7 @@ const firebaseConfig = {
  
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
+console.log(firebaseApp)
 
 //Create instance of google authentication class
 const googleProvider = new GoogleAuthProvider();
