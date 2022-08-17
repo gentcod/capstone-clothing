@@ -1,4 +1,3 @@
-import { Children } from 'react';
 import './button-regular.style.scss'
 
 //Config Helper Variables for styling
