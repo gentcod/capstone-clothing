@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth, signInWithPopup, signInWithRedirect, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { getAuth, signInWithPopup, signInWithRedirect, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'firebase/auth';
 import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
 
 const firebaseConfig = {
@@ -32,19 +32,24 @@ export const db = getFirestore();
 
 //Create user document authentication
 export const createUserDocumentFromAuth = async (userAuth, additionalInfo = {}) => {
+   //Guard clause
    if(!userAuth) return;
 
-   //User document reference
+   //Create user document reference form database
    const userDocRef = doc(db, 'users', userAuth.uid);
 
+   //To check if user document exists
    const userSnapShot = await getDoc(userDocRef);
 
    //If user data exists
    if(!userSnapShot.exists()) {
+
+      //Destructure keys from userAuth object
       const { displayName, email } = userAuth;
       const createdAt = new Date();
 
       try {
+         //Set document and add key values to user document object in database
          await setDoc(userDocRef, {
             displayName,
             email,
@@ -62,16 +67,22 @@ export const createUserDocumentFromAuth = async (userAuth, additionalInfo = {}) 
    return userDocRef;
 }
 
+//Function that creates user authothentication with email and password
 export  const createAuthUserWithEmailAndPassword = async (email, password) => {
    if(!email || !password) return;
 
    return createUserWithEmailAndPassword(auth, email, password)
 }
 
+//Function that creates user authothentication when a sign in takes place
 export  const signInAuthUserWithEmailAndPassword = async (email, password) => {
    if(!email || !password) return;
 
    return signInWithEmailAndPassword(auth, email, password)
 }
 
+//Async function to sign out user
 export const signOutUser = async () => await signOut(auth);
+
+//Function to monitor the change of state of authothentication
+export const onAuthStateChangedListener = (callback) => onAuthStateChanged(auth, callback)

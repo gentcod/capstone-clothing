@@ -1,9 +1,7 @@
-import { useState, useContext } from 'react';
-import { signInWithGooglePopUp, createUserDocumentFromAuth, signInAuthUserWithEmailAndPassword } from '../../utilities/firebase/firebase.utilities';
+import { useState } from 'react';
+import { signInWithGooglePopUp, signInAuthUserWithEmailAndPassword } from '../../utilities/firebase/firebase.utilities';
 import FormInput from '../form-input/form-input.component';
 import Button from '../button/button-regular.component';
-
-import { UserContext } from '../../context/user.context';
 
 // import { useEffect } from 'react';
 // import { getRedirectResult } from 'firebase/auth';
@@ -18,7 +16,6 @@ const defaultFormFields = {
 }
 
 const SignInForm = () => {
-   const { setCurrentUser } = useContext(UserContext);
 
    //Sign in with email
    const [formFields, setFormFields] = useState(defaultFormFields);
@@ -26,10 +23,7 @@ const SignInForm = () => {
 
    //Sign in with google popup
    const signInWithgGoogle = async () => {
-      const {user} = await signInWithGooglePopUp();
-      await createUserDocumentFromAuth(user);
-
-      setCurrentUser(user);
+      await signInWithGooglePopUp();
    };
 
    const resetFormFields = () => {
@@ -41,10 +35,9 @@ const SignInForm = () => {
       event.preventDefault();
 
       try {
-         const { user } = await signInAuthUserWithEmailAndPassword(email, password);
-         setCurrentUser(user);
-
+         await signInAuthUserWithEmailAndPassword(email, password);
          resetFormFields();
+
       } catch (err) {
          if(err.code === 'auth/wrong-password') {
             alert('Password or email incorrect, check again')

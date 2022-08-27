@@ -1,0 +1,7 @@
+.products-container {
+   display: grid;
+   grid-template-columns: auto auto auto auto;
+   padding: 5rem 0;
+   justify-content: center;
+   column-gap: 3rem;
+}

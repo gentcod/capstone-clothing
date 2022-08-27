@@ -37,13 +37,18 @@
    }
 
    &--inverted {
-      background-color: #fff;
+      width: 30rem;
+      height: 4rem;
+      background-color: rgba(#fff, .7);
       color: #222;
       font-weight: 700;
       border: 1px solid #222;
+      padding: 1.5rem 10rem;
+      font-size: 1rem;
+      text-align: center;
 
       &:hover {
-         background-color: #222;
+         background-color: rgba(#000, .7);
          color: #fff;
          font-weight: 500;
          border: none;
