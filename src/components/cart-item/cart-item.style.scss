@@ -1,0 +1,41 @@
+.cart {
+   &-item {
+      height: 6rem;
+      width: 100%;
+      margin-bottom: 1rem;
+      display: flex;
+
+      img {
+         height: 100%;
+         object-fit: cover;
+      }
+
+      h4 {
+         font-weight: 300;
+      }
+
+      &-desc {
+         padding: 1rem;
+         font-size: 1.1rem;
+      }
+
+      &-value {
+         display: flex;
+         margin-top: .5rem;
+         font-weight: 300;
+
+         p {
+            padding: .5rem;
+         }
+      }
+
+      &-num {
+         background-color: #000;
+         color: #fff;
+         border-radius: 50%;
+         font-size: 1rem;
+         text-align: center;
+         margin-left: 1rem;
+      }
+   }
+}

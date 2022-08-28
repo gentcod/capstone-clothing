@@ -1,0 +1,25 @@
+.cart {
+   &-icon-container {
+      width: 4.5rem;
+      height: 3.5rem;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      
+   }
+}
+
+.cart-logo {
+   width: 2rem;
+   height: 2rem;
+}
+
+.item-count {
+   position: absolute;
+   font-size: 1.1rem;
+   font-weight: 900;
+   border: 1rem;
+   margin-top: .5rem;
+}
