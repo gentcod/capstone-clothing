@@ -21,8 +21,6 @@ export const UserProvider = ({ children }) => {
          //Create user authenticatiob is user exist or isnt null
          if (user) createUserDocumentFromAuth(user);
          setCurrentUser(user)
-
-         console.log(user)
       })
 
       return unsuscribe;

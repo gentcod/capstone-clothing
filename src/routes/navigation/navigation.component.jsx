@@ -14,7 +14,7 @@ import './_navigation.style.scss';
 
 const Navigation = () => {
    const { currentUser } = useContext(UserContext);
-   const { cartNum, isCartOpen } = useContext(CartContext);
+   const { cartCount, isCartOpen } = useContext(CartContext);
 
    const signOutUserHandler = async () => {
       await signOutUser();
@@ -30,7 +30,7 @@ const Navigation = () => {
                <Link className="navigation__link" to={'/shop'}>Shop</Link>
                <Link className="navigation__link" to={'/contact'}>Contact</Link>
               { currentUser ? (<span className='navigation__link' onClick={signOutUserHandler}>SIGN OUT</span>) : (<Link className="navigation__link" to={'/auth'}>Sign in</Link>)}
-               <CartIcon itemNum={cartNum}/>
+               <CartIcon itemNum={cartCount}/>
             </div>
             {isCartOpen && <CartDropdown/>}
          </div>
