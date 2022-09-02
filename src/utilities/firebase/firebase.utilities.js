@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth, signInWithPopup, signInWithRedirect, GoogleAuthProvider, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'firebase/auth';
-import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
+import { getFirestore, doc, getDoc, setDoc, collection, writeBatch, query, getDocs } from 'firebase/firestore';
 
 const firebaseConfig = {
    apiKey: "AIzaSyAxfqoYyZZWzapLjMKd-03LoDxtM3FXfnw",
@@ -29,6 +29,45 @@ export const signInWithGoogleRedirect = () => signInWithRedirect(auth, googlePro
 
 //Creating database or storing database object to a variable
 export const db = getFirestore();
+
+//Function to add collection and documents to firebase
+export const addDocumentAndCollection = async (collectionKey, objectsToAdd) => {
+   //Variable to store the collection created in database and the collection key (name of the collection)
+   const collectionRef = collection(db, collectionKey);
+
+   //Variable to store batch of document in collection
+   const batch = writeBatch(db);
+
+   //Iterate through object data, create document reference to specific collection title
+   objectsToAdd.forEach(object => {
+      const docRef = doc(collectionRef, object.title.toLowerCase());
+
+      batch.set(docRef, object);
+   });
+
+   await batch.commit();
+   console.log('done');
+}
+
+//Fetch document data from firestore
+export const getDocumentAndCollection = async () => {
+   const collectionRef = collection(db, 'categories');
+
+   //Generate query from collection reference
+   const collectionQuery = query(collectionRef);
+
+   const querySnapshot = await getDocs(collectionQuery);
+
+   //Convert array to return object
+   const categoriesMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
+      const { title, items } = docSnapshot.data();
+      acc[title.toLowerCase()] = items;
+
+      return acc;
+   }, {})
+
+   return categoriesMap;
+}
 
 //Create user document authentication
 export const createUserDocumentFromAuth = async (userAuth, additionalInfo = {}) => {
