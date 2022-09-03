@@ -51,8 +51,9 @@ export const InvertedButton = styled(BaseButton)`
    text-align: center;
 
    &:hover {
-      background-color: rgba(#000, .5);
+      background-color: #eee;
       color: #222;
+      font-weight: 900;
       border: 1px solid #000;
    }
 `

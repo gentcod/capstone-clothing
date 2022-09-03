@@ -5,7 +5,7 @@ import { CategoriesContext } from '../../context/categories.context';
 
 import ProductCard from '../../components/product-card/product-card.component';
 
-import { CategoryContainer } from './category.styles';
+import { CategoryTitle, CategoryContainer } from './category.styles';
 
 const Category = () => {
    const { category } = useParams(); //Get route link
@@ -18,13 +18,16 @@ const Category = () => {
 
 
    return (
-      <CategoryContainer>
-         {
-            products && products.map(product => (
-               <ProductCard key={product.id} product={product}/>
-            ))
-         }
-      </CategoryContainer>
+      <>
+         <CategoryTitle>{category.toUpperCase()}</CategoryTitle>
+         <CategoryContainer>
+            {
+               products && products.map(product => (
+                  <ProductCard key={product.id} product={product}/>
+               ))
+            }
+         </CategoryContainer>
+      </>
    )
 };
 

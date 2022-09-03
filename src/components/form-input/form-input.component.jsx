@@ -1,9 +1,9 @@
-import './form-input.style.scss'
+import {FormInputContainer, FormInputContent, FormInputLabel} from './form-input.styles'
 
 const FormInput = ({label, handler, value, type, name, id}) => {
    return (
-      <div className='form-input__container'>
-         <input 
+      <FormInputContainer>
+         <FormInputContent 
             id={id} 
             className="form__input" 
             type={type} required 
@@ -11,8 +11,8 @@ const FormInput = ({label, handler, value, type, name, id}) => {
             name={name} 
             value={value}
          />
-         <label className={`${value ? 'shrink' : ''} form__input-label`} htmlFor={id}>{label}</label>
-      </div>
+         <FormInputLabel shrink={value} htmlFor={id}>{label}</FormInputLabel>
+      </FormInputContainer>
    )
 }
 

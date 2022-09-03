@@ -9,3 +9,9 @@ export const CategoryContainer = styled.div`
    align-items: center;
    justify-content: center;
 `
+
+export const CategoryTitle = styled.h2`
+   font-size: 3rem;
+   margin-bottom: 1.5rem;
+   text-align: center;
+`

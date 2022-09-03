@@ -40,15 +40,11 @@ export const CheckoutItemValue = styled.span`
    margin-top: 5px;
 `
 
-export const CheckoutItemIconRemove = styled.div`
-   padding-left: 12px;
-   font-size: 1.6rem;
-   font-weight: 900;
-   cursor: pointer;
-`
-
 export const CheckoutItemIcon = styled.div`
    font-size: 1.6rem;
    font-weight: 900;
    cursor: pointer;
+`
+export const CheckoutItemIconRemove = styled(CheckoutItemIcon)`
+   padding-left: 12px;
 `

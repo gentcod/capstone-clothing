@@ -1,12 +1,14 @@
-import './card.styles.jsx'
- import { CardContainer, BackgroundImage, DetailsBox  } from './card.styles';
+import { useNavigate } from 'react-router-dom';
 
-const Card = (props) => {
+import { CardContainer, BackgroundImage, DetailsBox  } from './card.styles';
 
-   const { product, image} = props;
+const Card = ({ product, image, route }) => {
+   const navigate = useNavigate();
+
+   const onNavigateHandler = () => navigate(route);
 
    return (
-      <CardContainer>
+      <CardContainer onClick={onNavigateHandler}>
         <BackgroundImage image={image}>
         </BackgroundImage>
         <DetailsBox>

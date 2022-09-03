@@ -22,7 +22,7 @@ export const ProductCardContainer = styled.div`
    cursor: pointer;
 
    &:hover > button {
-      display: flex;
+      display: inline;
    }
 
    &:hover > ${ProductCardImage} {
@@ -31,10 +31,11 @@ export const ProductCardContainer = styled.div`
    }
 
    button {
+      background-color: #222222ad;
       text-align: center;
       height: fit-content;
       position: absolute;
-      top: 60%;
+      top: 70%;
 
       display: none;
    }

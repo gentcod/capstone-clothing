@@ -4,14 +4,15 @@ import { signInWithGooglePopUp, signInAuthUserWithEmailAndPassword } from '../..
 
 import FormInput from '../form-input/form-input.component';
 import Button, {BUTTON_TYPE_CLASSES} from '../button/button.component';
+
 import { ButtonContainer } from '../button/button.styles';
+import { FormHeader, FormSummary } from '../sign-up-form/sign-up-form.styles';
+import { FormSignIn } from './sign-in-form.styles';
 
 // import { useEffect } from 'react';
 // import { getRedirectResult } from 'firebase/auth';
 //To sign in with google redirect
 // import { signInWithGoogleRedirect, auth } from '../../utilities/firebase/firebase.utilities'
-
-import './sign-in-form.style.scss';
 
 const defaultFormFields = {
    email: '',
@@ -62,9 +63,9 @@ const SignInForm = () => {
 
    return(
       <div>
-         <form className="form__container form__sign-in" onSubmit={handleSubmit}>
-            <h2 className="form__header">I already have an account?</h2>
-            <p className="form__summary">Sign in with your email and password</p>
+         <FormSignIn onSubmit={handleSubmit}>
+            <FormHeader>I already have an account?</FormHeader>
+            <FormSummary>Sign in with your email and password</FormSummary>
 
             <FormInput label='Email' type='email' handler={handleChange} value={email} name='email' id='sign-in-email'/>
             <FormInput label='Password' type='password' handler={handleChange} value={password} name='password' id='sign-in-password'/>
@@ -73,7 +74,7 @@ const SignInForm = () => {
                <Button type='submit'>Sign In</Button>
                <Button type='button' buttonType={BUTTON_TYPE_CLASSES.google} onClick={signInWithgGoogle}>Sign in with Google</Button>
             </ButtonContainer>
-         </form>
+         </FormSignIn>
 
       </div>
    )
