@@ -1,20 +1,19 @@
-import './_card.style.scss'
+import './card.styles.jsx'
+ import { CardContainer, BackgroundImage, DetailsBox  } from './card.styles';
 
 const Card = (props) => {
 
    const { product, image} = props;
 
    return (
-      <div className='card-container'>
-        <div 
-         className="background-image" 
-         style={{backgroundImage: `url(${image})`}}>
-        </div>
-        <div className="details-box">
+      <CardContainer>
+        <BackgroundImage image={image}>
+        </BackgroundImage>
+        <DetailsBox>
          <h2>{product}</h2>
          <p>Show Now</p>
-        </div>
-      </div>
+        </DetailsBox>
+      </CardContainer>
    );
 };
 

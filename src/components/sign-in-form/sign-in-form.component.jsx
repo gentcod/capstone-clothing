@@ -1,7 +1,10 @@
 import { useState } from 'react';
+
 import { signInWithGooglePopUp, signInAuthUserWithEmailAndPassword } from '../../utilities/firebase/firebase.utilities';
+
 import FormInput from '../form-input/form-input.component';
-import Button from '../button/button-regular.component';
+import Button, {BUTTON_TYPE_CLASSES} from '../button/button.component';
+import { ButtonContainer } from '../button/button.styles';
 
 // import { useEffect } from 'react';
 // import { getRedirectResult } from 'firebase/auth';
@@ -66,10 +69,10 @@ const SignInForm = () => {
             <FormInput label='Email' type='email' handler={handleChange} value={email} name='email' id='sign-in-email'/>
             <FormInput label='Password' type='password' handler={handleChange} value={password} name='password' id='sign-in-password'/>
 
-            <div className="btn-container">
+            <ButtonContainer>
                <Button type='submit'>Sign In</Button>
-               <Button type='button' buttonType='google' onClick={signInWithgGoogle}>Sign in with Google</Button>
-            </div>
+               <Button type='button' buttonType={BUTTON_TYPE_CLASSES.google} onClick={signInWithgGoogle}>Sign in with Google</Button>
+            </ButtonContainer>
          </form>
 
       </div>

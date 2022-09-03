@@ -1,16 +1,15 @@
 import Card from '../card/card.component';
-import './_directory.style.scss';
-
+import { DirectoryContainer } from './directory.styles';
 
 const Directory = ({categories}) => {
    return (
-      <div className="directory-container">
+      <DirectoryContainer>
         {categories.map(({title, id, imageUrl}) => {
           return(
             <Card product={title} key={id} image={imageUrl}/>
           )
         })}
-      </div>
+      </DirectoryContainer>
     );
 };
 

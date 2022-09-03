@@ -3,11 +3,11 @@ import { useContext } from 'react';
 
 import { CartContext } from '../../context/cart.context';
 
-import './checkout-item.style.scss';
+import {CheckoutItemContainer, CheckoutItemIcon, CheckoutItemImageContainer, CheckoutItemIconRemove, CheckoutItemName, CheckoutItemPrice, CheckoutItemQuantity, CheckoutItemValue} from './checkout-item.styles.jsx';
 
 const CheckoutItem = ({cartItem}) => {
 
-   const { productName, price, image, quantity} = cartItem;
+   const { name, price, imageUrl, quantity} = cartItem;
 
    const { addItemToCart, removeItemFromCart, clearItemFromCart } = useContext(CartContext);
    const addItemHandler = () => addItemToCart(cartItem);
@@ -15,19 +15,19 @@ const CheckoutItem = ({cartItem}) => {
    const removeItemHandler = () => removeItemFromCart(cartItem);
 
    return(
-      <div className='checkout__item-container'>
-         <div className='checkout__item-image-container'>
-            <img src={image} alt={`${productName}`}/>
-         </div>
-         <span className='checkout__item-name'>{productName}</span>
-         <span className='checkout__item-quantity'>
-            <div className='checkout__item-arrow icon' onClick={removeItemHandler}>&#10094;</div>
-            <span className='checkout__item-value'>{quantity}</span>
-            <div className='checkout__item-arrow icon' onClick={addItemHandler}>&#10095;</div>
-         </span>
-         <span className='checkout__item-price'>${price}</span>
-         <div className='checkout__item-remove icon' onClick={clearItemHandler}>&#10006;</div>
-      </div>
+      <CheckoutItemContainer>
+         <CheckoutItemImageContainer>
+            <img src={imageUrl} alt={`${name}`}/>
+         </CheckoutItemImageContainer>
+         <CheckoutItemName>{name}</CheckoutItemName>
+         <CheckoutItemQuantity>
+            <CheckoutItemIcon onClick={removeItemHandler}>&#10094;</CheckoutItemIcon>
+            <CheckoutItemValue>{quantity}</CheckoutItemValue>
+            <CheckoutItemIcon onClick={addItemHandler}>&#10095;</CheckoutItemIcon>
+         </CheckoutItemQuantity>
+         <CheckoutItemPrice>${price}</CheckoutItemPrice>
+         <CheckoutItemIconRemove onClick={clearItemHandler}>&#10006;</CheckoutItemIconRemove>
+      </CheckoutItemContainer>
    )
 };
 
