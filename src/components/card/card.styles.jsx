@@ -29,10 +29,6 @@ export const CardContainer = styled.div`
     }
   }
      
-  &.large {
-    height: 38rem;
-  }
-     
   &:first-child {
     margin-right: .75rem;
   }
