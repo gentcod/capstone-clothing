@@ -3,6 +3,17 @@ import { createContext, useReducer } from "react";
 
 import { createAction } from "../utilities/reducer/reducer.utilities";
 
+export const CartContext = createContext({
+   cartCount: 0,
+   isCartOpen: false,
+   setIsCartOpen: () => {}, 
+   cartItems: [],
+   addItemToCart: () => {},
+   removeItemFromCart: () => {},
+   clearItemFromCart: () => {},
+   cartTotal: 0,
+});
+
 //Helper function
 const addCartItem = (cartItems, productToAdd) => {
    //Find if cardItems contains product
@@ -38,17 +49,6 @@ const removeCartItem = (cartItems, productToRemove) => {
 const clearItem = (cartItems, itemToClear) => {
    return cartItems.filter(item => item.id !== itemToClear.id)
 }
-
-export const CartContext = createContext({
-   cartCount: 0,
-   isCartOpen: false,
-   setIsCartOpen: () => {}, 
-   cartItems: [],
-   addItemToCart: () => {},
-   removeItemFromCart: () => {},
-   clearItemFromCart: () => {},
-   cartTotal: 0,
-});
 
 export const CART_ACTION_TYPES = {
    SET_CART_ITEMS: 'SET_CART_ITEMS',
