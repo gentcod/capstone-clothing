@@ -58,15 +58,7 @@ export const getDocumentAndCollection = async () => {
 
    const querySnapshot = await getDocs(collectionQuery);
 
-   //Convert array to return object
-   const categoriesMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
-      const { title, items } = docSnapshot.data();
-      acc[title.toLowerCase()] = items;
-
-      return acc;
-   }, {})
-
-   return categoriesMap;
+   return querySnapshot.docs.map((docSnapshot) => docSnapshot.data());
 }
 
 //Create user document authentication

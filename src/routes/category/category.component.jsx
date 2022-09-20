@@ -1,7 +1,11 @@
+// import { useContext } from 'react';
 import { useParams } from 'react-router-dom';
-import { useContext, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
-import { CategoriesContext } from '../../context/categories.context';
+// import { CategoriesContext } from '../../context/categories.context';
+
+import { useSelector } from 'react-redux';
+import { selectCategories } from '../../store/category/category.selector';
 
 import ProductCard from '../../components/product-card/product-card.component';
 
@@ -9,7 +13,8 @@ import { CategoryTitle, CategoryContainer } from './category.styles';
 
 const Category = () => {
    const { category } = useParams(); //Get route link
-   const { categoriesMap } = useContext(CategoriesContext); 
+   // const { categoriesMap } = useContext(CategoriesContext); 
+   const categoriesMap = useSelector(selectCategories);
    const [products, setProducts] = useState(categoriesMap[category]); //Set products inital value
 
    useEffect(() => {

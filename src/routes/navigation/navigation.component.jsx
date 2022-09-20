@@ -1,20 +1,24 @@
 import { Outlet } from "react-router-dom" //Syntactic sugar for anchor tags.. Outlet represents the preceeding  elements in a component
 import { Fragment, useContext } from "react";
+import { useSelector } from 'react-redux';
 
-import { ReactComponent as Logo} from '../../assets/crown.svg'; //Syntactic sugar adding logos
+import { ReactComponent as Logo} from '../../assets/crown.svg'; //Syntactic sugar for adding logos
 import CartIcon from "../../components/cart-icon/cart-icon.component";
 import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component";
 
-import { UserContext } from "../../context/user.context";
+// import { UserContext } from "../../context/user.context";
 import { CartContext } from "../../context/cart.context";
+import { selectCurrentUser } from "../../store/user/user.selector";
 
 import { signOutUser } from "../../utilities/firebase/firebase.utilities.js";
 
 import { NavigationContainer, LogoContainer, NavigationLinksContainer, NavigationLink } from "./navigation.styles";
 
 const Navigation = () => {
-   const { currentUser } = useContext(UserContext);
+   // const { currentUser } = useContext(UserContext);
    const { cartCount, isCartOpen } = useContext(CartContext);
+
+   const currentUser = useSelector(selectCurrentUser);
 
    const signOutUserHandler = async () => {
       await signOutUser();

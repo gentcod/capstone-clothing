@@ -10,7 +10,7 @@ export const BackgroundImage = styled.div`
 
 export const CardContainer = styled.div`
   min-width: 30%;
-  height: 24rem;
+  height: 22rem;
   flex: 1 1 auto;
   display: flex;
   align-items: center;
@@ -35,6 +35,11 @@ export const CardContainer = styled.div`
      
   &:last-child {
     margin-left: .75rem;
+    height: 35rem;
+  }
+
+  &:nth-child(4) {
+    height: 35rem;
   }
 `
 
