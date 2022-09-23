@@ -8,7 +8,7 @@ export const BackgroundImage = styled.div`
   background-image: ${({image}) => `url(${image})`}
 `
 
-export const CardContainer = styled.div`
+export const DirectoryCardContainer = styled.div`
   min-width: 30%;
   height: 22rem;
   flex: 1 1 auto;

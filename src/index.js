@@ -3,27 +3,29 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react'
 
 import App from './App';
 // import { UserProvider } from './context/user.context';
 // import { CategoriesProvider } from './context/categories.context';
-import { CartProvider } from './context/cart.context';
-import { store } from './store/store';
+// import { CartProvider } from './context/cart.context';
+import { store, persistor } from './store/store';
 import './index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
-        <CartProvider>
+      <PersistGate loading={null} persistor={persistor}>
+        <BrowserRouter>
           <App />
-        </CartProvider>
-      </BrowserRouter>
+        </BrowserRouter>
+      </PersistGate>
     </Provider>
   </React.StrictMode>
 );
 
+//The loading parameter passed into the PersistGate component could be used to add a component which is rendered while the data is fetched
 //When use context is used, appropriate provider is used to wrap elemets that get access to provider context
 // root.render(
 //   <React.StrictMode>

@@ -14,6 +14,7 @@ import { CategoryTitle, CategoryContainer } from './category.styles';
 const Category = () => {
    const { category } = useParams(); //Get route link
    // const { categoriesMap } = useContext(CategoriesContext); 
+   
    const categoriesMap = useSelector(selectCategories);
    const [products, setProducts] = useState(categoriesMap[category]); //Set products inital value
 

@@ -1,4 +1,4 @@
-import Card from '../card/card.component';
+import DirectoryCard from '../directory-card/directory-card.component';
 import { DirectoryContainer } from './directory.styles';
 
 const categories = [
@@ -34,16 +34,16 @@ const categories = [
   }
 ]
 
-const Directory = () => {
+const Directories = () => {
    return (
       <DirectoryContainer>
         {categories.map(({title, id, imageUrl, route}) => {
           return(
-            <Card product={title} key={id} image={imageUrl} route={route}/>
+            <DirectoryCard product={title} key={id} image={imageUrl} route={route}/>
           )
         })}
       </DirectoryContainer>
     );
 };
 
-export default Directory;
+export default Directories;
