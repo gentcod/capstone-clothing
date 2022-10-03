@@ -7,17 +7,19 @@ import logger from 'redux-logger';
 import createSagaMiddleware from 'redux-saga';
 // import { loggerMiddleware } from './middleware/logger';
 
-import { rootReducer } from './root-reducer';
+import { rootReducer } from './root-reducer'; //To be used as an argument for the store
 import { rootSaga } from './root-saga';
 
 // const middleWares = [loggerMiddleware];
 
+//To utilize local storage: key for object ref name in local storage, blacklist: object that shouldn't be persisted or stored in the localStorage
 const persistConfig = {
    key: 'root',
    storage,
-   blacklist: ['cart']
+   blacklist: ['user']
 };
 
+//Persisted reducer
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const sagaMiddleware = createSagaMiddleware();
@@ -27,7 +29,8 @@ const middleWares = [process.env.NODE_ENV !== 'production' && logger, sagaMiddle
 const composeEnhancer = 
    (process.env.NODE_ENV !== 'production' &&
     window && 
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose
+;
 
 const composedEnhancers = composeEnhancer(applyMiddleware(...middleWares));
 
