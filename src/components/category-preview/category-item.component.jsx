@@ -6,7 +6,7 @@ const CategoryItems = ({title, products}) => {
    return (
       <CategoryItemsContainer>
          <h2>
-            <CategoryItemsTitle>{title.toUpperCase()}</CategoryItemsTitle>
+            <CategoryItemsTitle to={title}>{title.toUpperCase()}</CategoryItemsTitle>
          </h2>
 
          <CategoryItemsContent>

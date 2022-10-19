@@ -3,8 +3,8 @@ import { useDispatch } from 'react-redux';
 import { Routes, Route} from 'react-router-dom'; //Routes is used as parent element for Route elements or components, Route elements can also be used as parent elements to subsidiary Route elements
 
 
-import { onAuthStateChangedListener, createUserDocumentFromAuth } from './utilities/firebase/firebase.utilities';
-import { setCurrentUser } from "./store/user/user.action";
+// import { onAuthStateChangedListener, createUserDocumentFromAuth, getCurrentUser } from './utilities/firebase/firebase.utilities';
+import { checkUserSession } from "./store/user/user.action";
 
 import Authentication from './routes/authentication/authentication.component';
 import Checkout from './routes/checkout/checkout.component';
@@ -20,13 +20,15 @@ const App = () => {
   //It is run once when the page is loaded: it calls the Authentication change listener on setCurrentUser, which is called when the state of the currentUser changes
   useEffect(() => {
     //Store function return in a variable
-    const unsuscribe = onAuthStateChangedListener((user) => {
+    // const unsuscribe = onAuthStateChangedListener((user) => {
+    //   if (user) createUserDocumentFromAuth(user);
+    //   dispatch(setCurrentUser(user));
+    // });
+    // return unsuscribe;
+    // getCurrentUser().then(user => console.log(user))
 
-      if (user) createUserDocumentFromAuth(user);
-      dispatch(setCurrentUser(user));
-    });
-
-    return unsuscribe;
+    //Using Saga
+    dispatch(checkUserSession());
   }, [dispatch]);
 
   return (

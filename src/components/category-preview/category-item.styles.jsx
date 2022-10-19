@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom'
 
 export const CategoryItemsContainer = styled.div`
    display: flex;
@@ -10,7 +11,7 @@ export const CategoryItemsContainer = styled.div`
    }
 `
 
-export const CategoryItemsTitle = styled.span`
+export const CategoryItemsTitle = styled(Link)`
    font-size: 28px;
    cursor: pointer;
 `

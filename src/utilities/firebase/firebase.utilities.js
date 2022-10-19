@@ -95,7 +95,7 @@ export const createUserDocumentFromAuth = async (userAuth, additionalInfo = {}) 
    }
 
    //If user data does not exist
-   return userDocRef;
+   return userSnapShot;
 }
 
 //Function that creates user authothentication with email and password
@@ -117,3 +117,16 @@ export const signOutUser = async () => await signOut(auth);
 
 //Function to monitor the change of state of authothentication
 export const onAuthStateChangedListener = (callback) => onAuthStateChanged(auth, callback)
+
+export const getCurrentUser = () => {
+   return new Promise((resolve, reject) => {
+      const unsuscribe = onAuthStateChanged(
+         auth, 
+         (userAuth) => {
+            unsuscribe();
+            resolve(userAuth);
+         },
+         reject
+      );
+   })
+}
