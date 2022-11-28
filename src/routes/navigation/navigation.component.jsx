@@ -1,8 +1,8 @@
 import { Outlet } from "react-router-dom" //Syntactic sugar for anchor tags.. Outlet represents the preceeding  elements in a component
 import { Fragment } from "react";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
-import { ReactComponent as Logo} from '../../assets/crown.svg'; //Syntactic sugar for adding logos
+import { ReactComponent as Logo } from '../../assets/crown.svg'; //Syntactic sugar for adding logos
 import CartIcon from "../../components/cart-icon/cart-icon.component";
 import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component";
 
@@ -11,38 +11,42 @@ import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component
 import { selectCurrentUser } from "../../store/user/user.selector";
 import { selectCartCount, selectIsCartOpen } from "../../store/cart/cart.selector";
 
-import { signOutUser } from "../../utilities/firebase/firebase.utilities.js";
+// import { signOutUser } from "../../utilities/firebase/firebase.utilities.js";
 
 import { NavigationContainer, LogoContainer, NavigationLinksContainer, NavigationLink } from "./navigation.styles";
+import { signOutStart } from "../../store/user/user.action";
 
 const Navigation = () => {
    // const { currentUser } = useContext(UserContext);
    // const { cartCount, isCartOpen } = useContext(CartContext);
 
+   const dispatch = useDispatch()
    const currentUser = useSelector(selectCurrentUser);
    const cartCount = useSelector(selectCartCount)
    const isCartOpen = useSelector(selectIsCartOpen)
 
-   const signOutUserHandler = async () => {
-      await signOutUser();
-   }
+   const signOutUser = () => dispatch(signOutStart());
+
+   // const signOutUserHandler = async () => {
+   //    await signOutUser();
+   // }
 
    return (
-     <Fragment>
+      <Fragment>
          <NavigationContainer>
             <LogoContainer to={'/'}>
-               <Logo/>
+               <Logo />
             </LogoContainer>
             <NavigationLinksContainer>
                <NavigationLink to={'/shop'}>Shop</NavigationLink>
                <NavigationLink to={'/contact'}>Contact</NavigationLink>
-              { currentUser ? (<NavigationLink as={'span'} onClick={signOutUserHandler}>SIGN OUT</NavigationLink>) : (<NavigationLink to={'/auth'}>Sign in</NavigationLink>)}
-               <CartIcon itemNum={cartCount}/>
+               {currentUser ? (<NavigationLink as={'span'} onClick={signOutUser}>SIGN OUT</NavigationLink>) : (<NavigationLink to={'/auth'}>Sign in</NavigationLink>)}
+               <CartIcon itemNum={cartCount} />
             </NavigationLinksContainer>
-            {isCartOpen && <CartDropdown/>}
+            {isCartOpen && <CartDropdown />}
          </NavigationContainer>
-         <Outlet/>
-     </Fragment>
+         <Outlet />
+      </Fragment>
    )
 }
 

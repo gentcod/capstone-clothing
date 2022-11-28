@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from '../../utilities/firebase/firebase.utilities';
+import { useDispatch} from 'react-redux'
 
 import FormInput from '../form-input/form-input.component';
 import Button from '../button/button.component';
 
 import { FormContainer, FormHeader, FormSummary} from './sign-up-form.styles';
 
+import { signUpStart } from '../../store/user/user.action';
 
 const defaultFormFields = {
    displayName: '',
@@ -18,6 +19,7 @@ const SignUpForm = () => {
 
    const [ formFields, setFormFields ] = useState(defaultFormFields);
    const { displayName, email, password, confirmPassword } = formFields;
+   const dispatch = useDispatch();
 
    const handleChange = (event) => {
       const {name, value} = event.target
@@ -38,9 +40,10 @@ const SignUpForm = () => {
 
       try {
          //Get user data from sign-up authentication
-         const { user } = await createAuthUserWithEmailAndPassword(email, password)
+         // const { user } = await createAuthUserWithEmailAndPassword(email, password)
 
-         await createUserDocumentFromAuth(user, {displayName})
+         // await createUserDocumentFromAuth(user, {displayName})
+         dispatch(signUpStart(email, password, displayName))
          resetFormFields();
          
       } catch(err) {
@@ -57,12 +60,12 @@ const SignUpForm = () => {
             <FormHeader>I do not have an account?</FormHeader>
             <FormSummary>Sign up with your email and password</FormSummary>
 
-            <FormInput label='Display Name' type='text' handler={handleChange} value={displayName} name='displayName' id='sign-up-name'/>
-            <FormInput label='Email' type='email' handler={handleChange} value={email} name='email' id='sign-up-email'/>
-            <FormInput label='Password' type='password' handler={handleChange} value={password} name='password' id='sign-up-password'/>
-            <FormInput label='Confrim Password' type='password' handler={handleChange} value={confirmPassword} name='confirmPassword' id='sign-up-confirm-password'/>
+            <FormInput label='Display Name' type='text' handler={handleChange} name='displayName' id='sign-up-name'/>
+            <FormInput label='Email' type='email' handler={handleChange} name='email' id='sign-up-email'/>
+            <FormInput label='Password' type='password' handler={handleChange} name='password' id='sign-up-password'/>
+            <FormInput label='Confrim Password' type='password' handler={handleChange} name='confirmPassword' id='sign-up-confirm-password'/>
 
-            <Button type='submit'>Sign Up</Button>
+            <Button type='submit' onClick={handleSubmit}>Sign Up</Button>
          </FormContainer>
       </div>
    )

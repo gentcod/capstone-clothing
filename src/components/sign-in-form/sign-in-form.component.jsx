@@ -72,8 +72,8 @@ const SignInForm = () => {
             <FormHeader>I already have an account?</FormHeader>
             <FormSummary>Sign in with your email and password</FormSummary>
 
-            <FormInput label='Email' type='email' handler={handleChange} value={email} name='email' id='sign-in-email'/>
-            <FormInput label='Password' type='password' handler={handleChange} value={password} name='password' id='sign-in-password'/>
+            <FormInput label='Email' type='email' handler={handleChange} name='email' id='sign-in-email'/>
+            <FormInput label='Password' type='password' handler={handleChange} name='password' id='sign-in-password'/>
 
             <ButtonContainer>
                <Button type='submit'>Sign In</Button>
