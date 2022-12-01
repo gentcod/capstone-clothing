@@ -17,6 +17,7 @@ console.log(firebaseApp)
 
 //Create instance of google authentication class
 const googleProvider = new GoogleAuthProvider();
+
 //Callback function to select account for authentication
 googleProvider.setCustomParameters({
    prompt: 'select_account',
@@ -72,7 +73,7 @@ export const createUserDocumentFromAuth = async (userAuth, additionalInfo = {}) 
    //To check if user document exists
    const userSnapShot = await getDoc(userDocRef);
 
-   //If user data exists
+   //If user data does not exist
    if(!userSnapShot.exists()) {
 
       //Destructure keys from userAuth object
@@ -94,7 +95,7 @@ export const createUserDocumentFromAuth = async (userAuth, additionalInfo = {}) 
       }
    }
 
-   //If user data does not exist
+   //If user data exists
    return userSnapShot;
 }
 
