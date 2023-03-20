@@ -1,8 +1,5 @@
-// import { useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-
-// import { CategoriesContext } from '../../context/categories.context';
 
 import { useSelector } from 'react-redux';
 import { selectCategoriesIsLoading, selectCategoriesMap } from '../../store/category/category.selector';
@@ -13,15 +10,13 @@ import Spinner from '../../components/spinner/spinner.component';
 import { CategoryTitle, CategoryContainer } from './category.styles';
 
 const Category = () => {
-   const { category } = useParams(); //Get route link
-   // const { categoriesMap } = useContext(CategoriesContext); 
-   
+   const { category } = useParams(); 
    const isLoading = useSelector(selectCategoriesIsLoading);
    const categoriesMap = useSelector(selectCategoriesMap);
-   const [products, setProducts] = useState(categoriesMap[category]); //Set products inital value
+   const [products, setProducts] = useState(categoriesMap[category]);
 
    useEffect(() => {
-      setProducts(categoriesMap[category]); //Change products value when route link changes and categoriesMap changes in the context
+      setProducts(categoriesMap[category]);
    }, [category, categoriesMap])
 
    return (
@@ -43,5 +38,3 @@ const Category = () => {
 };
 
 export default Category;
-
-//Always include guard clause when fetching data from api or dataabse

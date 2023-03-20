@@ -39,10 +39,6 @@ const SignUpForm = () => {
       }
 
       try {
-         //Get user data from sign-up authentication
-         // const { user } = await createAuthUserWithEmailAndPassword(email, password)
-
-         // await createUserDocumentFromAuth(user, {displayName})
          dispatch(signUpStart(email, password, displayName))
          resetFormFields();
          

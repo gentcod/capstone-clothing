@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-// import { signInWithGooglePopUp, signInAuthUserWithEmailAndPassword } from '../../utilities/firebase/firebase.utilities';
 import { googleSignInStart, emailSignInStart } from '../../store/user/user.action'
 
 import FormInput from '../form-input/form-input.component';
@@ -11,11 +10,6 @@ import { ButtonContainer } from '../button/button.styles';
 import { FormHeader, FormSummary } from '../sign-up-form/sign-up-form.styles';
 import { FormSignIn } from './sign-in-form.styles';
 
-// import { useEffect } from 'react';
-// import { getRedirectResult } from 'firebase/auth';
-//To sign in with google redirect
-// import { signInWithGoogleRedirect, auth } from '../../utilities/firebase/firebase.utilities'
-
 const defaultFormFields = {
    email: '',
    passowrd: '',
@@ -23,14 +17,10 @@ const defaultFormFields = {
 
 const SignInForm = () => {
    const dispatch = useDispatch();
-
-   //Sign in with email
    const [formFields, setFormFields] = useState(defaultFormFields);
    const { email, password } = formFields;
 
-   //Sign in with google popup
    const signInWithgGoogle = async () => {
-      // await signInWithGooglePopUp();
       dispatch(googleSignInStart());
    };
 
@@ -43,7 +33,6 @@ const SignInForm = () => {
       event.preventDefault();
 
       try {
-         // await signInAuthUserWithEmailAndPassword(email, password);
          dispatch(emailSignInStart(email, password))
          resetFormFields();
 
@@ -86,19 +75,3 @@ const SignInForm = () => {
 }
 
 export default SignInForm;
-
-////////////////////////////////////////////
-//Sign in with google redirect
-//Paste in conponent above
-
-// useEffect(() => {
-//    const fetchData = async () => {
-//       const response = await getRedirectResult(auth);
-      
-//       if (response) {
-//          const userDcoRef = await createUserDocumentFromAuth(response.user);
-//          console.log(userDcoRef);
-//       }
-//    };
-//    fetchData();
-// }, []);

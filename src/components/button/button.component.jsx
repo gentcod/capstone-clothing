@@ -1,6 +1,5 @@
 import {BaseButton, GoogleSignInButton, InvertedButton, ButtonSpinner} from './button.styles.jsx'
 
-//Config Helper Variables for styling
 export const BUTTON_TYPE_CLASSES = {
    base: 'base',
    google: 'google',

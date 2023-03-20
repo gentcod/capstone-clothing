@@ -17,6 +17,7 @@ console.log(firebaseApp)
 
 //Create instance of google authentication class
 const googleProvider = new GoogleAuthProvider();
+
 //Callback function to select account for authentication
 googleProvider.setCustomParameters({
    prompt: 'select_account',
@@ -32,13 +33,9 @@ export const db = getFirestore();
 
 //Function to add collection and documents to firebase
 export const addDocumentAndCollection = async (collectionKey, objectsToAdd) => {
-   //Variable to store the collection created in database and the collection key (name of the collection)
    const collectionRef = collection(db, collectionKey);
-
-   //Variable to store batch of document in collection
    const batch = writeBatch(db);
 
-   //Iterate through object data, create document reference to specific collection title
    objectsToAdd.forEach(object => {
       const docRef = doc(collectionRef, object.title.toLowerCase());
 
@@ -55,7 +52,6 @@ export const getDocumentAndCollection = async () => {
 
    //Generate query from collection reference
    const collectionQuery = query(collectionRef);
-
    const querySnapshot = await getDocs(collectionQuery);
 
    return querySnapshot.docs.map((docSnapshot) => docSnapshot.data());
@@ -63,7 +59,6 @@ export const getDocumentAndCollection = async () => {
 
 //Create user document authentication
 export const createUserDocumentFromAuth = async (userAuth, additionalInfo = {}) => {
-   //Guard clause
    if(!userAuth) return;
 
    //Create user document reference form database
@@ -72,10 +67,8 @@ export const createUserDocumentFromAuth = async (userAuth, additionalInfo = {}) 
    //To check if user document exists
    const userSnapShot = await getDoc(userDocRef);
 
-   //If user data exists
    if(!userSnapShot.exists()) {
 
-      //Destructure keys from userAuth object
       const { displayName, email } = userAuth;
       const createdAt = new Date();
 
@@ -93,29 +86,27 @@ export const createUserDocumentFromAuth = async (userAuth, additionalInfo = {}) 
          console.log('Error creating user', err.message)
       }
    }
-
-   //If user data does not exist
    return userSnapShot;
 }
 
-//Function that creates user authothentication with email and password
+//Create user authothentication with email and password
 export  const createAuthUserWithEmailAndPassword = async (email, password) => {
    if(!email || !password) return;
 
    return createUserWithEmailAndPassword(auth, email, password)
 }
 
-//Function that creates user authothentication when a sign in takes place
+//Create user authothentication when a sign in takes place
 export  const signInAuthUserWithEmailAndPassword = async (email, password) => {
    if(!email || !password) return;
 
    return signInWithEmailAndPassword(auth, email, password)
 }
 
-//Async function to sign out user
+//Sign out user
 export const signOutUser = async () => await signOut(auth);
 
-//Function to monitor the change of state of authothentication
+//Change of state of authothentication
 export const onAuthStateChangedListener = (callback) => onAuthStateChanged(auth, callback)
 
 export const getCurrentUser = () => {

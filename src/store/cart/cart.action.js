@@ -2,8 +2,6 @@ import { createAction } from "../../utilities/reducer/reducer.utilities";
 import { CART_ACTION_TYPES } from "./cart.types";
 import { addCartItem, removeCartItem, clearItem } from "../../utilities/helper-functions/cart-hepler-functions";
 
-// export const updateCartItemReducer = cartItems => createAction(CART_ACTION_TYPES.SET_CART_ITEMS, cartItems)
-
 export const updateCartItemReducer = (newCartItems) => {
    createAction(CART_ACTION_TYPES.SET_CART_ITEMS, newCartItems);
 }

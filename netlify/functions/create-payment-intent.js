@@ -2,9 +2,6 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
-// const express = require("express");
-
-// const app = express();
 
 exports.handler = async (event) => {
   try {

@@ -28,7 +28,7 @@ const PaymentForm = () => {
          headers: {
             'Content-Type': 'application/json'
          },
-         body: JSON.stringify({ amount: amount * 100 }), //Multiplied by 100 to convert to cents value
+         body: JSON.stringify({ amount: amount * 100 }),
       }).then(res => res.json());
 
       const { paymentIntent: { client_secret } } = response;

@@ -20,5 +20,5 @@ export function* onFetchCategories() {
 }
 
 export function* categoriesSaga() {
-   yield all([call(onFetchCategories)]); //All methods in the all method are completed before further executions are carried out
+   yield all([call(onFetchCategories)]);
 }

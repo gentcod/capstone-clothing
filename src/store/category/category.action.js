@@ -9,14 +9,3 @@ export const fetchCategoriesStart = () => createAction(CATEGORIES_ACTION_TYPES.F
 export const fetchCategoriesSuccess = (categories) => createAction(CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_SUCESS, categories);
 
 export const fetchCategoriesFailed = (error) => createAction(CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_FAILED, error);
-
-//Thunk middleware
-// export const fetchCategoriesAsync = () => async (dispatch) => {
-//    dispatch(fetchCategoriesStart());
-//    try {
-//       const categoriesArray = await getDocumentAndCollection();
-//       dispatch(fetchCategoriesSuccess(categoriesArray));
-//    } catch  (error) {
-//       dispatch(fetchCategoriesFailed(error));
-//    }
-// }
