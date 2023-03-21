@@ -17,11 +17,7 @@ exports.handler = async (event) => {
       statusCode: 200,
       body: JSON.stringify({ paymentIntent }),
       };
-      // app.post((req, res) => {
-      //    res.status(200).JSON({
-      //       body: paymentIntent
-      //    })
-      // })
+     
    } catch (error) {
       console.error(error);
 
