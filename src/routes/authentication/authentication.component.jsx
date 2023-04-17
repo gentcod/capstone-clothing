@@ -9,7 +9,6 @@ const Authentication = () => {
       <AuthenticationContainer>
          <SignInForm/>
          <SignUpForm/>
-         {/* <button onClick={signInWithGoogleRedirect}>Sign In with Google Redirect</button> */}
       </AuthenticationContainer>
    )
 }

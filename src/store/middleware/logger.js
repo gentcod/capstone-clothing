@@ -1,4 +1,3 @@
-//Demystefying middleware: understanding what redux logger looks like behind the scenes
 export const loggerMiddleware = store => next => action => {
    if(!action.type) {
       return next(action);
