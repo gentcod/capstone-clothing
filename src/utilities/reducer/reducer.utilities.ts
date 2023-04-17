@@ -1,5 +1,7 @@
 import { AnyAction } from "redux";
 
+
+
 export type ActionWithPayload<T, P> = {
    type: T;
    payload: P;
@@ -13,9 +15,6 @@ export function createAction<T extends string, P>(type: T, payload: P): ActionWi
 
 export function createAction<T extends string>(type: T, payload: void): Action<T>
 
-//Function overloading: allowing a function have different types parameters
-export function createAction<T extends string, P>(type: T, payload: P) {
+ export function createAction<T extends string, P>(type: T, payload: P) {
    return { type, payload }
 }
-
-// export const createAction = (type, payload) => ({ type, payload });

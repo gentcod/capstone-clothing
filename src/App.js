@@ -17,17 +17,7 @@ import './App.css';
 const App = () => {
   const dispatch = useDispatch();
 
-  //It is run once when the page is loaded: it calls the Authentication change listener on setCurrentUser, which is called when the state of the currentUser changes
   useEffect(() => {
-    //Store function return in a variable
-    // const unsuscribe = onAuthStateChangedListener((user) => {
-    //   if (user) createUserDocumentFromAuth(user);
-    //   dispatch(setCurrentUser(user));
-    // });
-    // return unsuscribe;
-    // getCurrentUser().then(user => console.log(user))
-
-    //Using Saga
     dispatch(checkUserSession());
   }, [dispatch]);
 
