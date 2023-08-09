@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom" //Syntactic sugar for anchor tags.. Outlet represents the preceeding  elements in a component
+import { Outlet } from "react-router-dom";
 import { Fragment } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 

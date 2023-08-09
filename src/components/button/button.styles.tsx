@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import {SpinnerContainer} from '../../components/spinner/spinner.styles';
+import {SpinnerContainer} from '../spinner/spinner.styles';
 
 export const BaseButton = styled.button`
    height: 3rem;
