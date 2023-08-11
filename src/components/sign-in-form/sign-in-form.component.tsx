@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 // import { signInWithGooglePopUp, signInAuthUserWithEmailAndPassword } from '../../utilities/firebase/firebase.utilities';
@@ -10,6 +10,7 @@ import Button, {BUTTON_TYPE_CLASSES} from '../button/button.component';
 import { ButtonContainer } from '../button/button.styles';
 import { FormHeader, FormSummary } from '../sign-up-form/sign-up-form.styles';
 import { FormSignIn } from './sign-in-form.styles';
+import { AuthError, AuthErrorCodes } from 'firebase/auth';
 
 // import { useEffect } from 'react';
 // import { getRedirectResult } from 'firebase/auth';
@@ -18,7 +19,7 @@ import { FormSignIn } from './sign-in-form.styles';
 
 const defaultFormFields = {
    email: '',
-   passowrd: '',
+   password: '',
 }
 
 const SignInForm = () => {
@@ -39,29 +40,28 @@ const SignInForm = () => {
    }
 
 
-   const handleSubmit = async (event) => {
+   const handleSubmit = async (event: FormEvent) => {
       event.preventDefault();
 
       try {
-         // await signInAuthUserWithEmailAndPassword(email, password);
          dispatch(emailSignInStart(email, password))
          resetFormFields();
 
       } catch (err) {
-         if(err.code === 'auth/wrong-password') {
+         if((err as AuthError).code === AuthErrorCodes.INVALID_EMAIL) {
             alert('Password or email incorrect, check again')
             return;
          }
 
-         if(err.code === 'auth/user-not-found') {
+         if((err as AuthError).code === AuthErrorCodes.USER_DELETED) {
             alert('Account not registered, try signing up')
          }
 
-         console.error(err.message);
+         console.error((err as AuthError).message);
       }
    }
 
-   const handleChange = (event) => {
+   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
       const {name, value} = event.target
       setFormFields({...formFields, [name]: value})
    }
@@ -72,8 +72,8 @@ const SignInForm = () => {
             <FormHeader>I already have an account?</FormHeader>
             <FormSummary>Sign in with your email and password</FormSummary>
 
-            <FormInput label='Email' type='email' handler={handleChange} name='email' id='sign-in-email'/>
-            <FormInput label='Password' type='password' handler={handleChange} name='password' id='sign-in-password'/>
+            <FormInput label='Email' type='email' onChange={handleChange} name='email' id='sign-in-email'/>
+            <FormInput label='Password' type='password' onChange={handleChange} name='password' id='sign-in-password'/>
 
             <ButtonContainer>
                <Button type='submit'>Sign In</Button>

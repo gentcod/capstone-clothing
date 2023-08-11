@@ -1,11 +1,15 @@
 import styled, { css } from 'styled-components';
 
+type FormInputLabelProps = {
+   shrink: boolean;
+}
+
 const shrinkLabelStyles = css`
    font-size: 1rem;
    top: -.5rem;
 `
 
-export const FormInputLabel = styled.label`
+export const FormInputLabel = styled.label<FormInputLabelProps>`
    font-size: 1.1rem;
    font-weight: 300;
    color: #4b4949;

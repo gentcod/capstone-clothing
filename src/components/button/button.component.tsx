@@ -10,7 +10,7 @@ export enum BUTTON_TYPE_CLASSES {
 
 export type ButtonProps = {
    buttonType?: BUTTON_TYPE_CLASSES;
-   isLoading: boolean;
+   isLoading?: boolean;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
 const getButton = (buttonType = BUTTON_TYPE_CLASSES.base): typeof BaseButton => (

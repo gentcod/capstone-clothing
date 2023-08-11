@@ -14,19 +14,18 @@ import { CategoryTitle, CategoryContainer } from './category.styles';
 
 const Category = () => {
    const { category } = useParams(); //Get route link
-   // const { categoriesMap } = useContext(CategoriesContext); 
    
    const isLoading = useSelector(selectCategoriesIsLoading);
    const categoriesMap = useSelector(selectCategoriesMap);
-   const [products, setProducts] = useState(categoriesMap[category]); //Set products inital value
+   const [products, setProducts] = useState(categoriesMap[category as string]); //Set products inital value
 
    useEffect(() => {
-      setProducts(categoriesMap[category]); //Change products value when route link changes and categoriesMap changes in the context
+      setProducts(categoriesMap[category as string]); //Change products value when route link changes and categoriesMap changes in the context
    }, [category, categoriesMap])
 
    return (
       <>
-         <CategoryTitle>{category.toUpperCase()}</CategoryTitle>
+         <CategoryTitle>{(category as string).toUpperCase()}</CategoryTitle>
          {
             isLoading ? <Spinner/> :
             <CategoryContainer>
