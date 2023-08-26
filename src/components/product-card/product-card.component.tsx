@@ -8,8 +8,13 @@ import { selectCartItems } from '../../store/cart/cart.selector';
 import Button, {BUTTON_TYPE_CLASSES} from '../button/button.component';
 
 import { ProductCardContainer, ProductCardImage, ProductCardDescription, ProductCardName } from './product-card.styles';
+import { CategoryItem } from '../../store/category/category.types';
 
-const ProductCard = ({product}) => {
+type ProductCardProps = {
+   product: CategoryItem
+}
+
+const ProductCard = ({product}: ProductCardProps) => {
    // const {addItemToCart} = useContext(CartContext)
    // const addProduct = () => addItemToCart({id, name, price, imageUrl})
    const {id, name, price, imageUrl} = product;
